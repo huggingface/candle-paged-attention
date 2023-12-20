@@ -87,14 +87,14 @@ fn main() -> Result<()> {
                     .arg("-c")
                     .args(["-o", obj_file.to_str().unwrap()])
                     .args(["--default-stream", "per-thread"])
-                    // .arg("-U__CUDA_NO_HALF_OPERATORS__")
-                    // .arg("-U__CUDA_NO_HALF_CONVERSIONS__")
-                    // .arg("-U__CUDA_NO_HALF2_OPERATORS__")
-                    // .arg("-U__CUDA_NO_BFLOAT16_CONVERSIONS__")
-                    // .arg("--expt-relaxed-constexpr")
-                    // .arg("--expt-extended-lambda")
-                    // .arg("--use_fast_math")
-                    // .arg("--ptxas-options=-v")
+                    .arg("-U__CUDA_NO_HALF_OPERATORS__")
+                    .arg("-U__CUDA_NO_HALF_CONVERSIONS__")
+                    .arg("-U__CUDA_NO_HALF2_OPERATORS__")
+                    .arg("-U__CUDA_NO_BFLOAT16_CONVERSIONS__")
+                    .arg("--expt-relaxed-constexpr")
+                    .arg("--expt-extended-lambda")
+                    .arg("--use_fast_math")
+                    .arg("--ptxas-options=-v")
                     .arg("--verbose");
                 if let Ok(ccbin_path) = &ccbin_env {
                     command
