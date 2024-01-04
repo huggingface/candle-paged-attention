@@ -38,26 +38,26 @@ impl PagedAttention {
 
         let (kc, kc_l) = self.key_cache.storage_and_layout();
         let kc = match &*kc {
-            Storage::Cpu(_) => candle::bail!("key_cache must be a cuda tensor"),
             Storage::Cuda(kc) => kc,
+            _ => candle::bail!("key_cache must be a cuda tensor"),
         };
 
         let (vc, vc_l) = self.value_cache.storage_and_layout();
         let vc = match &*vc {
-            Storage::Cpu(_) => candle::bail!("value_cache must be a cuda tensor"),
             Storage::Cuda(vc) => vc,
+            _ => candle::bail!("value_cache must be a cuda tensor"),
         };
 
         let (bt, bt_l) = self.block_tables.storage_and_layout();
         let bt = match &*bt {
-            Storage::Cpu(_) => candle::bail!("block_tables must be a cuda tensor"),
             Storage::Cuda(bt) => bt,
+            _ => candle::bail!("block_tables must be a cuda tensor"),
         };
 
         let (cl, cl_l) = self.context_lens.storage_and_layout();
         let cl = match &*cl {
-            Storage::Cpu(_) => candle::bail!("context_lens must be a cuda tensor"),
             Storage::Cuda(cl) => cl,
+            _ => candle::bail!("context_lens must be a cuda tensor"),
         };
 
         let q_rank = q_l.stride().len();
@@ -269,32 +269,32 @@ fn update_cache<
 
     let (k, k_l) = key.storage_and_layout();
     let k = match &*k {
-        Storage::Cpu(_) => candle::bail!("key must be a cuda tensor"),
         Storage::Cuda(k) => k,
+        _ => candle::bail!("key must be a cuda tensor"),
     };
 
     let (v, v_l) = value.storage_and_layout();
     let v = match &*v {
-        Storage::Cpu(_) => candle::bail!("value must be a cuda tensor"),
         Storage::Cuda(v) => v,
+        _ => candle::bail!("value must be a cuda tensor"),
     };
 
     let (kc, kc_l) = key_cache.storage_and_layout();
     let kc = match &*kc {
-        Storage::Cpu(_) => candle::bail!("key_cache must be a cuda tensor"),
         Storage::Cuda(kc) => kc,
+        _ => candle::bail!("key_cache must be a cuda tensor"),
     };
 
     let (vc, vc_l) = value_cache.storage_and_layout();
     let vc = match &*vc {
-        Storage::Cpu(_) => candle::bail!("value_cache must be a cuda tensor"),
         Storage::Cuda(vc) => vc,
+        _ => candle::bail!("value_cache must be a cuda tensor"),
     };
 
     let (s, s_l) = slot_mapping.storage_and_layout();
     let s = match &*s {
-        Storage::Cpu(_) => candle::bail!("slot_mapping must be a cuda tensor"),
         Storage::Cuda(s) => s,
+        _ => candle::bail!("slot_mapping must be a cuda tensor"),
     };
 
     let k_rank = k_l.stride().len();
